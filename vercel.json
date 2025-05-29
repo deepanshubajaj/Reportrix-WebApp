@@ -25,6 +25,10 @@
     {
       "src": "/(.*)",
       "dest": "/index.html"
+    },
+    {
+      "src": "/NewsSplashScreenAsset/(.*)",
+      "dest": "/NewsSplashScreenAsset/$1"
     }
   ]
 }

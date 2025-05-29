@@ -37,6 +37,29 @@
             font-size: 24px;
             font-weight: 500;
         }
+
+        .error-message {
+            margin-top: 10px;
+            color: #ff4444;
+            font-size: 14px;
+        }
+    }
+
+    .error-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+
+        .error-message {
+            color: #ff4444;
+            font-size: 16px;
+            margin: 0;
+        }
     }
 }
 
