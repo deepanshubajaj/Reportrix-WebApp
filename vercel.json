@@ -11,6 +11,10 @@
   ],
   "routes": [
     {
+      "src": "/news_splash_screen_asset/(.*)",
+      "dest": "/news_splash_screen_asset/$1"
+    },
+    {
       "src": "/static/(.*)",
       "dest": "/static/$1"
     },
