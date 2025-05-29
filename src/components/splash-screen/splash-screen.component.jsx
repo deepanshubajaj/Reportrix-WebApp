@@ -143,7 +143,7 @@ function SplashScreen({ onComplete }) {
         {/* preload audio early in DOM */}
         <audio
           ref={audioRef}
-          src="/NewsSplashScreenAsset/NewsAudio.mp3"
+          src="/news_splash_screen_asset/news_audio.mp3"
           preload="auto"
           loop
         />
@@ -155,7 +155,7 @@ function SplashScreen({ onComplete }) {
     <div className={`splash-screen ${isVideoEnded ? 'fade-out' : ''}`}>
       <audio
         ref={audioRef}
-        src="/NewsSplashScreenAsset/NewsAudio.mp3"
+        src="/news_splash_screen_asset/news_audio.mp3"
         preload="auto"
         loop
       />
@@ -167,7 +167,7 @@ function SplashScreen({ onComplete }) {
         onEnded={handleVideoEnd}
         className="splash-video"
       >
-        <source src="/NewsSplashScreenAsset/BreakingNews.mp4" type="video/mp4" />
+        <source src="/news_splash_screen_asset/breaking_news.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
