@@ -13,13 +13,13 @@ function HomePage() {
                 {news
                     .filter(item => item.urlToImage)
                     .map((item, index) => {
-                    return (
-                        <NewsBox 
-                            key={index} 
-                            item={item} 
-                        />
-                    )
-                })}
+                        return (
+                            <NewsBox
+                                key={index}
+                                item={item}
+                            />
+                        )
+                    })}
             </div>
         </div>
     )

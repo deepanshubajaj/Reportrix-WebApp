@@ -10,7 +10,7 @@ export const CompiledNewsContextProvider = ({ children }) => {
     const cateredNews = useSelector((state) => state.cateredNews.news);
 
     useEffect(() => {
-        if(news && cateredNews) {
+        if (news && cateredNews) {
             const allNews = [...news, ...[].concat(...Object.values(cateredNews))];
             setCompiledNews(allNews);
         }
@@ -22,8 +22,8 @@ export const CompiledNewsContextProvider = ({ children }) => {
     };
 
     return (
-        <CompiledNewsContext.Provider value={ contextValue }>
-            { children }
+        <CompiledNewsContext.Provider value={contextValue}>
+            {children}
         </CompiledNewsContext.Provider>
     )
 }

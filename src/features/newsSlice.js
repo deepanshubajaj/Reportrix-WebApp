@@ -24,17 +24,17 @@ const newsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(fetchNews.pending, (state) => {
-            state.loading = 'loading';
-        })
-        .addCase(fetchNews.fulfilled, (state, action) => {
-            state.loading = 'succeeded';
-            state.news = action.payload;
-        })
-        .addCase(fetchNews.rejected, (state, action) => {
-            state.loading = 'failed';
-            state.error = action.error.message;
-        });
+            .addCase(fetchNews.pending, (state) => {
+                state.loading = 'loading';
+            })
+            .addCase(fetchNews.fulfilled, (state, action) => {
+                state.loading = 'succeeded';
+                state.news = action.payload;
+            })
+            .addCase(fetchNews.rejected, (state, action) => {
+                state.loading = 'failed';
+                state.error = action.error.message;
+            });
     },
 });
 

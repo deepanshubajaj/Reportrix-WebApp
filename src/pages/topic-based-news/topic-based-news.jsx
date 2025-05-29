@@ -39,9 +39,9 @@ function TopicBasedNews() {
                     newsContent
                         .filter(item => item.urlToImage)
                         .map((item) => (
-                            <NewsBox 
-                                key={item.url} 
-                                item={item} 
+                            <NewsBox
+                                key={item.url}
+                                item={item}
                             />
                         ))
                 ) : loading === 'succeeded' && (

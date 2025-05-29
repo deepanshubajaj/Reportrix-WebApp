@@ -7,7 +7,7 @@
         width: 10%;
         margin: auto;
         line-height: 0;
-    
+
         img {
             width: 100%;
             height: auto;
@@ -96,7 +96,7 @@
                 color: var(--blue);
                 cursor: pointer;
             }
-            
+
             &.marked {
                 color: var(--blue);
             }
@@ -214,7 +214,7 @@
                             font-weight: 500;
                             line-height: 0.95rem;
                             margin: 0;
-    
+
                             &:hover {
                                 cursor: pointer;
                                 text-decoration: underline;
@@ -238,7 +238,7 @@
                             color: var(--blue);
                             cursor: pointer;
                         }
-                        
+
                         &.marked {
                             color: var(--blue);
                         }

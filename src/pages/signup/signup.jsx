@@ -65,9 +65,9 @@ function SignUp() {
         if (name === 'phoneNumber') {
             // Only allow numbers and limit to 10 digits
             const numbersOnly = value.replace(/[^0-9]/g, '').slice(0, 10);
-            setFormInputs({...formInputs, [name]: numbersOnly});
+            setFormInputs({ ...formInputs, [name]: numbersOnly });
         } else {
-            setFormInputs({...formInputs, [name]: value});
+            setFormInputs({ ...formInputs, [name]: value });
         }
     }
 
@@ -105,15 +105,15 @@ function SignUp() {
 
         const validationErrors = {};
 
-        if(!formInputs.firstName.trim()) {
+        if (!formInputs.firstName.trim()) {
             validationErrors.firstName = 'First name is required';
         }
 
-        if(!formInputs.lastName.trim()) {
+        if (!formInputs.lastName.trim()) {
             validationErrors.lastName = 'Last name is required';
         }
 
-        if(!formInputs.email.trim()) {
+        if (!formInputs.email.trim()) {
             validationErrors.email = 'Email is required';
         }
         else {
@@ -123,39 +123,39 @@ function SignUp() {
             }
         }
 
-        if(!formInputs.phoneNumber.trim()) {
+        if (!formInputs.phoneNumber.trim()) {
             validationErrors.phoneNumber = 'Phone number is required';
         }
-        else if(!validatePhoneNumber(formInputs.phoneNumber.trim())) {
+        else if (!validatePhoneNumber(formInputs.phoneNumber.trim())) {
             validationErrors.phoneNumber = 'Invalid Phone number';
         }
 
-        if(!formInputs.password.trim()) {
+        if (!formInputs.password.trim()) {
             validationErrors.password = 'Password is required';
         }
-        else if(!validatePassword(formInputs.password.trim())) {
+        else if (!validatePassword(formInputs.password.trim())) {
             validationErrors.password = 'Must be at least 6 or more characters';
         }
 
-        if(!formInputs.confirmPassword.trim()) {
+        if (!formInputs.confirmPassword.trim()) {
             validationErrors.confirmPassword = 'Password is required';
         }
-        else if(formInputs.confirmPassword.trim() !== formInputs.password.trim()) {
+        else if (formInputs.confirmPassword.trim() !== formInputs.password.trim()) {
             validationErrors.confirmPassword = 'Password doesn\'t match';
         }
 
-        if(!formInputs.username.trim()) {
+        if (!formInputs.username.trim()) {
             validationErrors.username = 'Username is required';
         }
-        else if(!validateUsername(formInputs.username.trim())) {
+        else if (!validateUsername(formInputs.username.trim())) {
             validationErrors.username = 'Special characters not allowed';
         }
 
-        if(!selectedImage) {
+        if (!selectedImage) {
             validationErrors.image = '*Please select a profile image';
         }
 
-        if(Object.keys(validationErrors).length === 0) {
+        if (Object.keys(validationErrors).length === 0) {
             setFormErrors(defaultFormErrors);
 
             try {
@@ -166,7 +166,7 @@ function SignUp() {
                     // Add a small delay to ensure cleanup is complete
                     await new Promise(resolve => setTimeout(resolve, 1000));
                 }
-                
+
                 console.log('Creating new user account...');
                 const { user } = await createUserEmailPasswordMethod(formInputs.email, formInputs.password);
                 console.log('User account created:', user.uid);
@@ -180,31 +180,31 @@ function SignUp() {
 
                 const result = await addImageToStorage(selectedImage, formInputs, user);
                 console.log('Profile setup completed:', result);
-                
+
                 console.log('Fetching initial news...');
                 await fetchFreshNews();
                 console.log('Initial news fetched');
-                
+
                 toast.success('Signed up successfully!');
                 navigate('/');
-            } catch(err) {
+            } catch (err) {
                 console.error('Signup error:', err);
-                
-                if(err.code === 'auth/email-already-in-use') {
+
+                if (err.code === 'auth/email-already-in-use') {
                     validationErrors.email = 'Email already in use!';
                     setFormErrors(validationErrors);
                     return;
                 }
-                
+
                 // Handle specific error cases
-                if(err.message?.includes('Firestore')) {
+                if (err.message?.includes('Firestore')) {
                     toast.error('Error saving user data. Please try again.');
-                } else if(err.message?.includes('upload')) {
+                } else if (err.message?.includes('upload')) {
                     toast.error('Error uploading profile image. Please try again.');
                 } else {
                     toast.error(err.message || 'Failed to complete signup');
                 }
-                
+
                 // Attempt cleanup if something went wrong
                 try {
                     if (auth.currentUser) {
@@ -225,9 +225,9 @@ function SignUp() {
                 <h2>Sign Up</h2>
 
                 <form id='registeration-form' onSubmit={submitHandler}>
-                    <FormInput 
-                        labelText='First Name*' 
-                        errorText={formErrors.firstName} 
+                    <FormInput
+                        labelText='First Name*'
+                        errorText={formErrors.firstName}
                         inputOptions={{
                             type: 'text',
                             id: 'firstName',
@@ -237,9 +237,9 @@ function SignUp() {
                         }}
                     />
 
-                    <FormInput 
-                        labelText='Last Name*' 
-                        errorText={formErrors.lastName} 
+                    <FormInput
+                        labelText='Last Name*'
+                        errorText={formErrors.lastName}
                         inputOptions={{
                             type: 'text',
                             id: 'lastName',
@@ -249,9 +249,9 @@ function SignUp() {
                         }}
                     />
 
-                    <FormInput 
-                        labelText='Email*' 
-                        errorText={formErrors.email} 
+                    <FormInput
+                        labelText='Email*'
+                        errorText={formErrors.email}
                         inputOptions={{
                             type: 'email',
                             id: 'email',
@@ -261,9 +261,9 @@ function SignUp() {
                         }}
                     />
 
-                    <FormInput 
-                        labelText='Phone Number*' 
-                        errorText={formErrors.phoneNumber} 
+                    <FormInput
+                        labelText='Phone Number*'
+                        errorText={formErrors.phoneNumber}
                         inputOptions={{
                             type: 'tel',
                             id: 'phoneNumber',
@@ -275,9 +275,9 @@ function SignUp() {
                         }}
                     />
 
-                    <FormInput 
-                        labelText='Password*' 
-                        errorText={formErrors.password} 
+                    <FormInput
+                        labelText='Password*'
+                        errorText={formErrors.password}
                         inputOptions={{
                             type: 'password',
                             id: 'password',
@@ -287,9 +287,9 @@ function SignUp() {
                         }}
                     />
 
-                    <FormInput 
-                        labelText='Confirm Password*' 
-                        errorText={formErrors.confirmPassword} 
+                    <FormInput
+                        labelText='Confirm Password*'
+                        errorText={formErrors.confirmPassword}
                         inputOptions={{
                             type: 'password',
                             id: 'confirmPassword',
@@ -299,9 +299,9 @@ function SignUp() {
                         }}
                     />
 
-                    <FormInput 
-                        labelText='Username*' 
-                        errorText={formErrors.username} 
+                    <FormInput
+                        labelText='Username*'
+                        errorText={formErrors.username}
                         inputOptions={{
                             type: 'text',
                             id: 'username',
@@ -315,9 +315,9 @@ function SignUp() {
                         <div className="image-input-container">
                             <label htmlFor='image'>
                                 {previewUrl ? (
-                                    <img 
-                                        src={previewUrl} 
-                                        alt="Profile preview" 
+                                    <img
+                                        src={previewUrl}
+                                        alt="Profile preview"
                                         className="image-preview"
                                     />
                                 ) : (
@@ -327,10 +327,10 @@ function SignUp() {
                                     </>
                                 )}
                             </label>
-                            <input 
-                                className='image-input' 
-                                type='file' 
-                                id='image' 
+                            <input
+                                className='image-input'
+                                type='file'
+                                id='image'
                                 name='image'
                                 accept="image/*"
                                 onChange={handleImageChange}
@@ -341,15 +341,15 @@ function SignUp() {
                     </div>
                 </form>
 
-                {loading ? 
-                <div className="loader">
-                    <PulseLoader size='6' color="#1DB954" />
-                </div> : 
-                <Button 
-                    form='registeration-form'
-                    buttonText='Sign Up' 
-                    type='submit' 
-                />}
+                {loading ?
+                    <div className="loader">
+                        <PulseLoader size='6' color="#1DB954" />
+                    </div> :
+                    <Button
+                        form='registeration-form'
+                        buttonText='Sign Up'
+                        type='submit'
+                    />}
             </div>
 
             <div className="go-to-login">

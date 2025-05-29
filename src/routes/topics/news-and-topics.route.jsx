@@ -6,14 +6,14 @@ import GeneralNews from '../../pages/general-news-page/general-news-page';
 function NewsAndTopics() {
     return (
         <Routes>
-            <Route 
-                index 
-                element={<GeneralNews />} 
+            <Route
+                index
+                element={<GeneralNews />}
             />
 
-            <Route 
-                path=':topic' 
-                element={<TopicBasedNews />} 
+            <Route
+                path=':topic'
+                element={<TopicBasedNews />}
             />
         </Routes>
     )

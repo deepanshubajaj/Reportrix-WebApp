@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import './account.style.scss';
 import { useNavigate } from 'react-router-dom';
 import { signOutUser } from '../../lib/utils/firebase.utils';
@@ -51,7 +51,7 @@ function AccountPage() {
         navigate('/accounts');
     }
 
-    const goToUpdateProfilePage =() => {
+    const goToUpdateProfilePage = () => {
         navigate('/account/update');
     }
 
@@ -60,9 +60,9 @@ function AccountPage() {
             <div className="account-container">
                 <div className="account">
                     <div className="profile-image-container">
-                        <img 
-                            src={userDoc?.photoURL || '/default-profile.png'} 
-                            alt={userDoc?.displayName || 'User'} 
+                        <img
+                            src={userDoc?.photoURL || '/default-profile.png'}
+                            alt={userDoc?.displayName || 'User'}
                         />
                     </div>
 
@@ -87,24 +87,24 @@ function AccountPage() {
                         </ul>
                     </div>
 
-                    <Button 
-                        buttonText='Update Profile' 
-                        buttonType='simple' 
-                        onClick={goToUpdateProfilePage} 
+                    <Button
+                        buttonText='Update Profile'
+                        buttonType='simple'
+                        onClick={goToUpdateProfilePage}
                     />
 
-                    <Button 
-                        buttonType='icon' 
-                        onClick={goToUpdateProfilePage} 
-                        icon={faPencil} 
+                    <Button
+                        buttonType='icon'
+                        onClick={goToUpdateProfilePage}
+                        icon={faPencil}
                     />
                 </div>
 
                 <div className="buttons-container">
-                    <Button 
-                        type='button' 
-                        buttonText='Sign Out' 
-                        onClick={signOutHandler} 
+                    <Button
+                        type='button'
+                        buttonText='Sign Out'
+                        onClick={signOutHandler}
                     />
                 </div>
             </div>
@@ -112,17 +112,17 @@ function AccountPage() {
             <div className="user-bookmarks">
                 <h1>Bookmarks</h1>
 
-                {Array.isArray(userBookmarks) && userBookmarks.length > 0 ? 
+                {Array.isArray(userBookmarks) && userBookmarks.length > 0 ?
                     <div className="bookmarks-list">
                         {userBookmarks.map((item, index) => {
                             return (
-                                <NewsBoxAccountPage 
-                                    key={index} 
-                                    item={item} 
+                                <NewsBoxAccountPage
+                                    key={index}
+                                    item={item}
                                 />
                             )
                         })}
-                    </div> : 
+                    </div> :
                     <div className='no-bookmarks'>
                         <h1>No Bookmarks yet!</h1>
                     </div>

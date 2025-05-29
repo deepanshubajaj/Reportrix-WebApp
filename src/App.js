@@ -26,15 +26,15 @@ function App() {
     }
 
     const ProtectedRouteNoLogin = ({ children }) => {
-        if(!currentUser) {
+        if (!currentUser) {
             return <Navigate to="/accounts/login" />;
         }
-    
+
         return children;
     };
 
     const ProtectedRouteOnLogin = ({ children }) => {
-        if(currentUser) {
+        if (currentUser) {
             return <Navigate to="/" />;
         }
 

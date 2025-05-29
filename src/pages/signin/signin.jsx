@@ -55,16 +55,16 @@ function SignIn() {
     const handleForgotPassword = async (e) => {
         e.preventDefault(); // Prevent form submission
         console.log('Forgot password clicked');
-        
+
         const { email } = formInputs;
         console.log('Email value:', email);
-        
+
         // Clear previous errors
         setFormErrors(prev => ({
             ...prev,
             email: ''
         }));
-        
+
         // Check if email is empty
         if (!email || !email.trim()) {
             console.log('Email is empty');
@@ -74,7 +74,7 @@ function SignIn() {
             }));
             return;
         }
-        
+
         // Validate email format
         const emailError = validateEmail(email.trim());
         if (emailError) {
@@ -91,7 +91,7 @@ function SignIn() {
             setIsResetDisabled(true);
             const success = await sendPasswordResetLink(email.trim());
             console.log('Reset link result:', success);
-            
+
             if (success) {
                 setResetTimer(30);
             } else {
@@ -117,7 +117,7 @@ function SignIn() {
 
     const changeHandler = (e) => {
         const { name, value } = e.target;
-        setFormInputs({...formInputs, [name]: value});
+        setFormInputs({ ...formInputs, [name]: value });
     }
 
     const submitHandler = async (e) => {
@@ -191,9 +191,9 @@ function SignIn() {
                 <h2>Sign In</h2>
 
                 <form onSubmit={submitHandler}>
-                    <FormInput 
-                        labelText='Email' 
-                        errorText={formErrors.email} 
+                    <FormInput
+                        labelText='Email'
+                        errorText={formErrors.email}
                         inputOptions={{
                             type: 'email',
                             required: true,
@@ -205,9 +205,9 @@ function SignIn() {
                         }}
                     />
 
-                    <FormInput 
-                        labelText='Password' 
-                        errorText={formErrors.password} 
+                    <FormInput
+                        labelText='Password'
+                        errorText={formErrors.password}
                         inputOptions={{
                             type: 'password',
                             required: true,
@@ -220,54 +220,54 @@ function SignIn() {
                     />
 
                     <div className="buttons-container">
-                        {loading ? 
-                        <div className="loader">
-                            <PulseLoader size='6' color="#1DB954" />
-                        </div> : 
-                        <>
-                            <Button 
-                                buttonType='submit' 
-                                buttonText='Sign In' 
-                                onClick={submitHandler}
-                            />
+                        {loading ?
+                            <div className="loader">
+                                <PulseLoader size='6' color="#1DB954" />
+                            </div> :
+                            <>
+                                <Button
+                                    buttonType='submit'
+                                    buttonText='Sign In'
+                                    onClick={submitHandler}
+                                />
 
-                            <div className='divider'>
-                                <hr />
-                                <span>OR</span>
-                                <hr />
-                            </div>
+                                <div className='divider'>
+                                    <hr />
+                                    <span>OR</span>
+                                    <hr />
+                                </div>
 
-                            <Button 
-                                type='button' 
-                                buttonType='blue' 
-                                buttonText='Sign In With Google' 
-                                onClick={googleSignInHandler} 
-                            />
+                                <Button
+                                    type='button'
+                                    buttonType='blue'
+                                    buttonText='Sign In With Google'
+                                    onClick={googleSignInHandler}
+                                />
 
-                            <Button 
-                                buttonText={resetTimer > 0 ? `Resend in ${resetTimer}s` : 'Forgot Password?'}
-                                type='button'
-                                buttonType='simple'
-                                onClick={handleForgotPassword}
-                                disabled={isResetDisabled}
-                            />
-                        </>}
+                                <Button
+                                    buttonText={resetTimer > 0 ? `Resend in ${resetTimer}s` : 'Forgot Password?'}
+                                    type='button'
+                                    buttonType='simple'
+                                    onClick={handleForgotPassword}
+                                    disabled={isResetDisabled}
+                                />
+                            </>}
                     </div>
                 </form>
             </div>
 
             <div className="go-to-register">
-                <h2>Don't have an account? 
+                <h2>Don't have an account?
                     <span onClick={handleClick}> Sign Up</span>
                 </h2>
             </div>
 
             <table className="credentials">
                 <thead
-                onClick={() => fillWithSampleCredentials(
-                    process.env.REACT_APP_USER1_EMAIL,
-                    process.env.REACT_APP_USER1_PASSWORD
-                )} 
+                    onClick={() => fillWithSampleCredentials(
+                        process.env.REACT_APP_USER1_EMAIL,
+                        process.env.REACT_APP_USER1_PASSWORD
+                    )}
                 >
                     <tr>
                         <th>User-1 credentials</th>
@@ -287,10 +287,10 @@ function SignIn() {
 
             <table className="credentials">
                 <thead
-                onClick={() => fillWithSampleCredentials(
-                    process.env.REACT_APP_USER2_EMAIL,
-                    process.env.REACT_APP_USER2_PASSWORD
-                )} 
+                    onClick={() => fillWithSampleCredentials(
+                        process.env.REACT_APP_USER2_EMAIL,
+                        process.env.REACT_APP_USER2_PASSWORD
+                    )}
                 >
                     <tr>
                         <th>User-2 credentials</th>

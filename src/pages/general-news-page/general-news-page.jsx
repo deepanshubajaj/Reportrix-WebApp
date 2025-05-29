@@ -30,7 +30,7 @@ function GeneralNews() {
                     newsContent
                         .filter(item => item.urlToImage)
                         .map((item) => (
-                            <NewsBox 
+                            <NewsBox
                                 key={item.url}
                                 item={item}
                             />

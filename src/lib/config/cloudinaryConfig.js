@@ -46,7 +46,7 @@ export const uploadToCloudinary = async (file) => {
     // The public_id from Cloudinary doesn't include the folder
     // We need to store it in the format: folder_name/public_id
     const publicId = `${FOLDER_NAME}/${data.public_id}`;
-    
+
     // Return both the secure URL and the public_id
     return {
       secure_url: data.secure_url,

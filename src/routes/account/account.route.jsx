@@ -7,21 +7,21 @@ import BookmarkedArticles from '../../pages/bookmarked-articles/bookmarked-artic
 function Account() {
     return (
         <Routes>
-            <Route 
-                index 
+            <Route
+                index
                 element={
                     <AccountPage />
                 }
             />
 
-            <Route 
-                path='update' 
-                element={<UpdateProfile />} 
+            <Route
+                path='update'
+                element={<UpdateProfile />}
             />
 
-            <Route 
-                path='bookmarks' 
-                element={<BookmarkedArticles />} 
+            <Route
+                path='bookmarks'
+                element={<BookmarkedArticles />}
             />
         </Routes>
     )

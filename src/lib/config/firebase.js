@@ -23,7 +23,7 @@ const validateConfig = () => {
     ];
 
     const missingFields = requiredFields.filter(field => !firebaseConfig[field]);
-    
+
     if (missingFields.length > 0) {
         throw new Error(
             `Missing required Firebase configuration fields: ${missingFields.join(', ')}. ` +

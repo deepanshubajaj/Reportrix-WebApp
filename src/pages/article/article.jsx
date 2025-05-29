@@ -57,13 +57,13 @@ function Article() {
                         </ul>
 
                         <div className="bookmark-container">
-                            {userBookmarks.some(obj => obj.title === thisNews.title) ? 
-                                <BookmarkIcon 
+                            {userBookmarks.some(obj => obj.title === thisNews.title) ?
+                                <BookmarkIcon
                                     className='marked'
-                                    onClick={handleRemoveArticleFromBookmarks} 
-                                /> : 
-                                <BookmarkBorderOutlinedIcon 
-                                    onClick={handleAddArticleToBookmarks} 
+                                    onClick={handleRemoveArticleFromBookmarks}
+                                /> :
+                                <BookmarkBorderOutlinedIcon
+                                    onClick={handleAddArticleToBookmarks}
                                 />
                             }
                         </div>
@@ -71,13 +71,13 @@ function Article() {
                 </div>
 
                 <div className="bookmark-container">
-                    {userBookmarks.some(obj => obj.title === thisNews.title) ? 
-                        <BookmarkIcon 
+                    {userBookmarks.some(obj => obj.title === thisNews.title) ?
+                        <BookmarkIcon
                             className='marked'
-                            onClick={handleRemoveArticleFromBookmarks} 
-                        /> : 
-                        <BookmarkBorderOutlinedIcon 
-                            onClick={handleAddArticleToBookmarks} 
+                            onClick={handleRemoveArticleFromBookmarks}
+                        /> :
+                        <BookmarkBorderOutlinedIcon
+                            onClick={handleAddArticleToBookmarks}
                         />
                     }
                 </div>
@@ -85,16 +85,16 @@ function Article() {
 
             <div className="article-image-container">
                 {
-                    !imageError ? 
-                    <img 
-                        src={thisNews?.urlToImage} 
-                        alt="" 
-                        onError={() => setImageError(true)}  
-                    /> : 
-                    <img 
-                        src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg" 
-                        alt="" 
-                    />
+                    !imageError ?
+                        <img
+                            src={thisNews?.urlToImage}
+                            alt=""
+                            onError={() => setImageError(true)}
+                        /> :
+                        <img
+                            src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg"
+                            alt=""
+                        />
                 }
             </div>
 

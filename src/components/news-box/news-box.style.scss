@@ -6,7 +6,7 @@
         width: 30%;
         margin: auto 0;
         line-height: 0;
-    
+
         img {
             width: 100%;
             height: auto;
@@ -100,7 +100,7 @@
                 color: var(--blue);
                 cursor: pointer;
             }
-            
+
             &.marked {
                 color: var(--blue);
             }
@@ -262,6 +262,7 @@
                         }
                     }
                 }
+
                 .bookmark-container {
                     display: flex;
                     margin-left: auto;

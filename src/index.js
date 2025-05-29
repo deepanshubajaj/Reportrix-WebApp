@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <UserContextProvider>
-            <Provider store={ store }>
+            <Provider store={store}>
                 <CompiledNewsContextProvider>
                     <Router>
                         <App />

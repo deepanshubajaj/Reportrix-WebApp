@@ -42,7 +42,7 @@ export const UserContextProvider = ({ children }) => {
             const getUserDoc = async () => {
                 const userCollection = collection(db, 'usersReportrix');
                 const userDocRef = doc(userCollection, currentUser.uid);
-                
+
                 const unsub = onSnapshot(userDocRef, (snapshot) => {
                     if (snapshot.exists()) {
                         setUserDoc(snapshot.data());
@@ -58,7 +58,7 @@ export const UserContextProvider = ({ children }) => {
                             phoneNumber: '',
                             bookmarks: []
                         };
-                        
+
                         setDoc(userDocRef, userData)
                             .then(() => {
                                 setUserDoc(userData);
@@ -71,17 +71,17 @@ export const UserContextProvider = ({ children }) => {
                             });
                     }
                 });
-    
+
                 return unsub;
             }
-    
+
             if (currentUser) {
                 getUserDoc();
             } else {
                 setUserDoc(null);
             }
         }
-        catch(err) {
+        catch (err) {
             console.log('Error getting user doc:', err);
             setUserDoc(null);
         }
@@ -97,8 +97,8 @@ export const UserContextProvider = ({ children }) => {
     };
 
     return (
-        <UserContext.Provider value={ contextValue }>
-            { children }
+        <UserContext.Provider value={contextValue}>
+            {children}
         </UserContext.Provider>
     )
 }

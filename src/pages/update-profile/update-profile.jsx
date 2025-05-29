@@ -42,9 +42,9 @@ function UpdateProfile() {
         if (name === 'phoneNumber') {
             // Only allow numbers and limit to 10 digits
             const numbersOnly = value.replace(/[^0-9]/g, '').slice(0, 10);
-            setFormInputs({...formInputs, [name]: numbersOnly});
+            setFormInputs({ ...formInputs, [name]: numbersOnly });
         } else {
-            setFormInputs({...formInputs, [name]: value});
+            setFormInputs({ ...formInputs, [name]: value });
         }
     }
 
@@ -81,29 +81,29 @@ function UpdateProfile() {
 
         const validationErrors = {};
 
-        if(!formInputs.displayName.trim()) {
+        if (!formInputs.displayName.trim()) {
             validationErrors.displayName = 'Display name is required';
         }
 
-        if(!formInputs.phoneNumber.trim()) {
+        if (!formInputs.phoneNumber.trim()) {
             validationErrors.phoneNumber = 'Phone number is required';
-        } else if(!validatePhoneNumber(formInputs.phoneNumber.trim())) {
+        } else if (!validatePhoneNumber(formInputs.phoneNumber.trim())) {
             validationErrors.phoneNumber = 'Invalid Phone number';
         }
 
-        if(!formInputs.username.trim()) {
+        if (!formInputs.username.trim()) {
             validationErrors.username = 'username is required';
         }
-        else if(!validateUsername(formInputs.username.trim())) {
+        else if (!validateUsername(formInputs.username.trim())) {
             validationErrors.username = 'Special characters not allowed';
         }
 
-        if(Object.keys(validationErrors).length > 0) {
+        if (Object.keys(validationErrors).length > 0) {
             setFormErrors(validationErrors);
             return;
         }
 
-        if(Object.keys(validationErrors).length === 0) {
+        if (Object.keys(validationErrors).length === 0) {
             setFormErrors(defaultFormErrors);
             setIsLoading(true);
             try {
@@ -113,7 +113,7 @@ function UpdateProfile() {
                     navigate('/account');
                 }
             }
-            catch(err) {
+            catch (err) {
                 toast.error(err.message || 'Failed to update profile');
             }
             finally {
@@ -133,7 +133,7 @@ function UpdateProfile() {
             // Set the current profile photo as preview
             setPreviewUrl(userDoc.photoURL);
         }
-        catch(err) {
+        catch (err) {
             toast.error('Error loading profile data');
         }
     }, [userDoc])
@@ -147,9 +147,9 @@ function UpdateProfile() {
                     <div className="image-input-container">
                         <label htmlFor='image'>
                             {previewUrl ? (
-                                <img 
-                                    src={previewUrl} 
-                                    alt="Profile preview" 
+                                <img
+                                    src={previewUrl}
+                                    alt="Profile preview"
                                     className="image-preview"
                                 />
                             ) : (
@@ -159,10 +159,10 @@ function UpdateProfile() {
                                 </>
                             )}
                         </label>
-                        <input 
-                            className='image-input' 
-                            type='file' 
-                            id='image' 
+                        <input
+                            className='image-input'
+                            type='file'
+                            id='image'
                             name='image'
                             accept="image/*"
                             onChange={handleImageChange}
@@ -173,9 +173,9 @@ function UpdateProfile() {
                 </div>
 
                 <form onSubmit={submitHandler}>
-                    <FormInput 
-                        labelText='Display Name' 
-                        errorText={formErrors.displayName} 
+                    <FormInput
+                        labelText='Display Name'
+                        errorText={formErrors.displayName}
                         inputOptions={{
                             type: 'text',
                             required: true,
@@ -186,9 +186,9 @@ function UpdateProfile() {
                         }}
                     />
 
-                    <FormInput 
-                        labelText='Phone Number' 
-                        errorText={formErrors.phoneNumber} 
+                    <FormInput
+                        labelText='Phone Number'
+                        errorText={formErrors.phoneNumber}
                         inputOptions={{
                             type: 'tel',
                             required: true,
@@ -201,9 +201,9 @@ function UpdateProfile() {
                         }}
                     />
 
-                    <FormInput 
-                        labelText='Username' 
-                        errorText={formErrors.username} 
+                    <FormInput
+                        labelText='Username'
+                        errorText={formErrors.username}
                         inputOptions={{
                             type: 'text',
                             required: true,
@@ -215,23 +215,23 @@ function UpdateProfile() {
                     />
 
                     <div className="buttons-container">
-                        {isLoading ? 
-                        <div className="loader">
-                            <PulseLoader size='6' color="#1DB954" />
-                        </div> : 
-                        <>
-                            <Button 
-                                buttonType='submit' 
-                                buttonText='Update Profile' 
-                            />
+                        {isLoading ?
+                            <div className="loader">
+                                <PulseLoader size='6' color="#1DB954" />
+                            </div> :
+                            <>
+                                <Button
+                                    buttonType='submit'
+                                    buttonText='Update Profile'
+                                />
 
-                            <Button 
-                                type='button'
-                                buttonType='red'
-                                buttonText='Cancel' 
-                                onClick={goToAccountPage}
-                            />
-                        </>}
+                                <Button
+                                    type='button'
+                                    buttonType='red'
+                                    buttonText='Cancel'
+                                    onClick={goToAccountPage}
+                                />
+                            </>}
                     </div>
                 </form>
             </div>

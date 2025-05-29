@@ -83,9 +83,9 @@ function Navbar() {
             </li>
             <li>
               <Link to="/account" className="nav-link user-link">
-                <img 
-                  src={userDoc?.photoURL || currentUser?.photoURL || '/default-profile.png'} 
-                  alt={userDoc?.displayName || currentUser?.displayName || 'User'} 
+                <img
+                  src={userDoc?.photoURL || currentUser?.photoURL || '/default-profile.png'}
+                  alt={userDoc?.displayName || currentUser?.displayName || 'User'}
                 />
                 <span>{userDoc?.username || currentUser?.displayName || 'User'}</span>
               </Link>

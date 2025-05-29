@@ -19,7 +19,7 @@ function NewsBox({ item }) {
             alert('Please log in to bookmark articles');
             return;
         }
-        
+
         await addArticleToBookmarks(
             {
                 ...item,
@@ -34,7 +34,7 @@ function NewsBox({ item }) {
             alert('Please log in to bookmark articles');
             return;
         }
-        
+
         await removeArticleFromBookmarks(
             {
                 ...item,
@@ -53,16 +53,16 @@ function NewsBox({ item }) {
         <div className='news-box'>
             <div className='image-container'>
                 {
-                    !imageError ? 
-                    <img 
-                        src={item?.urlToImage} 
-                        alt="" 
-                        onError={() => setImageError(true)}  
-                    /> : 
-                    <img 
-                        src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg" 
-                        alt="" 
-                    />
+                    !imageError ?
+                        <img
+                            src={item?.urlToImage}
+                            alt=""
+                            onError={() => setImageError(true)}
+                        /> :
+                        <img
+                            src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg"
+                            alt=""
+                        />
                 }
             </div>
 
@@ -70,7 +70,7 @@ function NewsBox({ item }) {
                 <h1>{item.title}</h1>
 
                 <h2>{item.description}</h2>
-                
+
                 <div className="news-meta">
                     <ul>
                         {item.author && <li className='author'>Curated By: <span>{item.author}</span></li>}
@@ -81,16 +81,16 @@ function NewsBox({ item }) {
 
                     <div className="bookmark-container">
                         {currentUser ? (
-                            (userBookmarks?.some(obj => obj.title === item.title) || false) ? 
-                                <BookmarkIcon 
+                            (userBookmarks?.some(obj => obj.title === item.title) || false) ?
+                                <BookmarkIcon
                                     className='marked'
-                                    onClick={handleRemoveArticleFromBookmarks} 
-                                /> : 
-                                <BookmarkBorderOutlinedIcon 
-                                    onClick={handleAddArticleToBookmarks} 
+                                    onClick={handleRemoveArticleFromBookmarks}
+                                /> :
+                                <BookmarkBorderOutlinedIcon
+                                    onClick={handleAddArticleToBookmarks}
                                 />
                         ) : (
-                            <BookmarkBorderOutlinedIcon 
+                            <BookmarkBorderOutlinedIcon
                                 onClick={() => alert('Please log in to bookmark articles')}
                             />
                         )}
@@ -99,13 +99,13 @@ function NewsBox({ item }) {
             </div>
 
             <div className="bookmark-container">
-                {(userBookmarks?.some(obj => obj.title === item.title) || false) ? 
-                    <BookmarkIcon 
+                {(userBookmarks?.some(obj => obj.title === item.title) || false) ?
+                    <BookmarkIcon
                         className='marked'
-                        onClick={handleRemoveArticleFromBookmarks} 
-                    /> : 
-                    <BookmarkBorderOutlinedIcon 
-                        onClick={handleAddArticleToBookmarks} 
+                        onClick={handleRemoveArticleFromBookmarks}
+                    /> :
+                    <BookmarkBorderOutlinedIcon
+                        onClick={handleAddArticleToBookmarks}
                     />
                 }
             </div>

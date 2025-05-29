@@ -25,7 +25,7 @@
             row-gap: 3.5rem;
             align-items: center;
 
-            .image-input-group{
+            .image-input-group {
                 display: flex;
                 flex-direction: column;
                 position: relative;
@@ -52,7 +52,7 @@
 
                         &:hover {
                             border-color: var(--red);
-                            
+
                             svg {
                                 color: var(--red);
                             }
@@ -123,7 +123,7 @@
         h2 {
             font-size: 1.1rem;
             font-weight: 300;
-            
+
             span {
                 font-weight: 500;
                 color: #4285f4;

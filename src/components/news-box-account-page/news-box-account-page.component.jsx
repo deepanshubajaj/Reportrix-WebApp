@@ -43,22 +43,22 @@ function NewsBoxAccountPage({ item }) {
         <div className='news-box-account-page'>
             <div className='image-container'>
                 {
-                    !imageError ? 
-                    <img 
-                        src={item?.urlToImage} 
-                        alt="" 
-                        onError={() => setImageError(true)}  
-                    /> : 
-                    <img 
-                        src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg" 
-                        alt="" 
-                    />
+                    !imageError ?
+                        <img
+                            src={item?.urlToImage}
+                            alt=""
+                            onError={() => setImageError(true)}
+                        /> :
+                        <img
+                            src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg"
+                            alt=""
+                        />
                 }
             </div>
 
             <div className="news-content">
                 <h1>{item.title}</h1>
-                
+
                 <div className="news-meta">
                     <ul>
                         {item.author && <li className='author'>Curated By: <span>{item.author}</span></li>}
@@ -67,13 +67,13 @@ function NewsBoxAccountPage({ item }) {
                     </ul>
 
                     <div className="bookmark-container">
-                        {userBookmarks.some(obj => obj.title === item.title) ? 
-                            <BookmarkIcon 
+                        {userBookmarks.some(obj => obj.title === item.title) ?
+                            <BookmarkIcon
                                 className='marked'
-                                onClick={handleRemoveArticleFromBookmarks} 
-                            /> : 
-                            <BookmarkBorderOutlinedIcon 
-                                onClick={handleAddArticleToBookmarks} 
+                                onClick={handleRemoveArticleFromBookmarks}
+                            /> :
+                            <BookmarkBorderOutlinedIcon
+                                onClick={handleAddArticleToBookmarks}
                             />
                         }
                     </div>
@@ -81,13 +81,13 @@ function NewsBoxAccountPage({ item }) {
             </div>
 
             <div className="bookmark-container">
-                {userBookmarks.some(obj => obj.title === item.title) ? 
-                    <BookmarkIcon 
+                {userBookmarks.some(obj => obj.title === item.title) ?
+                    <BookmarkIcon
                         className='marked'
-                        onClick={handleRemoveArticleFromBookmarks} 
-                    /> : 
-                    <BookmarkBorderOutlinedIcon 
-                        onClick={handleAddArticleToBookmarks} 
+                        onClick={handleRemoveArticleFromBookmarks}
+                    /> :
+                    <BookmarkBorderOutlinedIcon
+                        onClick={handleAddArticleToBookmarks}
                     />
                 }
             </div>

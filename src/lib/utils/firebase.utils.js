@@ -1,7 +1,7 @@
 import { auth, db, provider } from "../config/firebase";
 import { uploadToCloudinary, deleteFromCloudinary, FOLDER_NAME } from "../config/cloudinaryConfig";
 
-import { 
+import {
     arrayRemove,
     arrayUnion,
     doc,
@@ -11,7 +11,7 @@ import {
     deleteDoc
 } from 'firebase/firestore';
 
-import { 
+import {
     signInWithPopup,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -28,19 +28,19 @@ import toast from "react-hot-toast";
 
 // Method to Create User Doc to collections
 const createUserDoc = async (user, formData, imageURL, publicId = null) => {
-    console.log('Starting createUserDoc with:', { 
-        userId: user?.uid, 
-        formData: JSON.stringify(formData), 
+    console.log('Starting createUserDoc with:', {
+        userId: user?.uid,
+        formData: JSON.stringify(formData),
         imageURL,
-        publicId 
+        publicId
     });
 
-    if(!user) {
+    if (!user) {
         console.error('No user provided to createUserDoc');
         throw new Error('No user provided to createUserDoc');
     }
 
-    if(!formData) {
+    if (!formData) {
         console.error('No formData provided to createUserDoc');
         throw new Error('No formData provided to createUserDoc');
     }
@@ -62,7 +62,7 @@ const createUserDoc = async (user, formData, imageURL, publicId = null) => {
     // Check if document already exists
     const userDocRef = doc(db, 'usersReportrix', user.uid);
     const docSnap = await getDoc(userDocRef);
-    
+
     if (docSnap.exists()) {
         console.log('Document already exists, updating instead of creating');
     }
@@ -72,7 +72,7 @@ const createUserDoc = async (user, formData, imageURL, publicId = null) => {
     try {
         // Construct the display name
         const displayName = `${firstName.trim()} ${lastName.trim()}`;
-        
+
         const userData = {
             uid: user.uid,
             displayName: displayName,
@@ -94,11 +94,11 @@ const createUserDoc = async (user, formData, imageURL, publicId = null) => {
 
         // Log the data being saved
         console.log('Attempting to save user data:', JSON.stringify(userData));
-        
+
         // Save to Firestore
         await setDoc(userDocRef, userData);
         console.log('User document saved successfully in Firestore');
-        
+
         // Verify the document was saved with correct data
         const verifySnap = await getDoc(userDocRef);
         if (verifySnap.exists()) {
@@ -114,7 +114,7 @@ const createUserDoc = async (user, formData, imageURL, publicId = null) => {
 
         return userDocRef;
     }
-    catch(err) {
+    catch (err) {
         console.error('Error in createUserDoc:', err);
         throw err;
     }
@@ -122,13 +122,13 @@ const createUserDoc = async (user, formData, imageURL, publicId = null) => {
 
 // Method to Create Google User Doc to collections
 const createGoogleUserDoc = async (user) => {
-    if(!user) return;
+    if (!user) return;
 
     const userDocRef = doc(db, 'usersReportrix', user.uid);
 
     const userSnapshot = await getDoc(userDocRef);
 
-    if(!userSnapshot.exists()) {
+    if (!userSnapshot.exists()) {
         const { email, uid, displayName, photoURL } = user;
 
         try {
@@ -142,7 +142,7 @@ const createGoogleUserDoc = async (user) => {
                 bookmarks: [],
             });
         }
-        catch(err) {
+        catch (err) {
             console.log(err);
         }
     }
@@ -165,7 +165,7 @@ const googlePopupSignIn = () => signInWithPopup(auth, provider);
 // Method to Sign User Up with Email and Password
 const createUserEmailPasswordMethod = async (email, password) => {
     console.log('Starting user creation with email:', email);
-    if(!email || !password) {
+    if (!email || !password) {
         console.error('Missing email or password in createUserEmailPasswordMethod');
         throw new Error('Email and password are required');
     }
@@ -181,10 +181,10 @@ const createUserEmailPasswordMethod = async (email, password) => {
 }
 
 const addImageToStorage = async (file, formData, user) => {
-    console.log('Starting addImageToStorage with:', { 
-        hasFile: !!file, 
-        formData: JSON.stringify(formData), 
-        userId: user?.uid 
+    console.log('Starting addImageToStorage with:', {
+        hasFile: !!file,
+        formData: JSON.stringify(formData),
+        userId: user?.uid
     });
 
     if (!user) {
@@ -232,7 +232,7 @@ const addImageToStorage = async (file, formData, user) => {
 
 // Method to Sign User In with Email and Password
 const signInUserEmailPasswordMethod = async (email, password) => {
-    if(!email || !password) {
+    if (!email || !password) {
         return;
     }
 
@@ -246,11 +246,11 @@ const signOutUser = async () => {
         if (currentUser) {
             // Sign out
             await signOut(auth);
-            
+
             // Clear any local storage or session storage
             localStorage.clear();
             sessionStorage.clear();
-            
+
             console.log('Sign out completed');
             toast.success('Sign out successful!');
         }
@@ -304,7 +304,7 @@ const updateUserProfile = async (profileDoc, imageFile, id) => {
 
             // Upload new image
             const { secure_url, public_id } = await uploadToCloudinary(imageFile);
-            
+
             // Add image data to update object
             updateData.photoURL = secure_url;
             updateData.publicId = public_id;

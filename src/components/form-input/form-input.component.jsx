@@ -16,13 +16,13 @@ function FormInput({ labelText, inputOptions, errorText }) {
     return (
         <div className='form-group'>
             <div className='input-container'>
-                <input 
-                    className='form-input' 
+                <input
+                    className='form-input'
                     {...inputOptions}
                     type={inputType}
                 />
                 {isPasswordField && (
-                    <button 
+                    <button
                         type="button"
                         className="password-toggle"
                         onClick={togglePasswordVisibility}
@@ -33,12 +33,12 @@ function FormInput({ labelText, inputOptions, errorText }) {
                 )}
             </div>
 
-            {labelText && 
-            <label 
-                htmlFor={inputOptions.id} 
-                className={`form-input-label ${inputOptions?.value?.length ? 'shrink' : ''}`}>
-            {labelText}
-            </label>}
+            {labelText &&
+                <label
+                    htmlFor={inputOptions.id}
+                    className={`form-input-label ${inputOptions?.value?.length ? 'shrink' : ''}`}>
+                    {labelText}
+                </label>}
 
             {errorText && <p className='error-text'>{errorText}</p>}
         </div>
