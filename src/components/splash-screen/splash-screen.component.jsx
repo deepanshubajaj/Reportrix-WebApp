@@ -4,40 +4,15 @@ import './splash-screen.style.scss';
 function SplashScreen({ onComplete }) {
   const [isVideoEnded, setIsVideoEnded] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [assetLoadError, setAssetLoadError] = useState(null);
   const audioRef = useRef(null);
   const videoRef = useRef(null);
   const playAttemptRef = useRef(false);
-
-  useEffect(() => {
-    // Check if assets are accessible
-    const checkAssets = async () => {
-      try {
-        const videoResponse = await fetch('/NewsSplashScreenAsset/BreakingNews.mp4');
-        const audioResponse = await fetch('/NewsSplashScreenAsset/NewsAudio.mp3');
-
-        if (!videoResponse.ok || !audioResponse.ok) {
-          console.error('Asset loading failed:', {
-            video: videoResponse.status,
-            audio: audioResponse.status
-          });
-          setAssetLoadError('Failed to load media assets');
-        }
-      } catch (error) {
-        console.error('Asset check error:', error);
-        setAssetLoadError(error.message);
-      }
-    };
-
-    checkAssets();
-  }, []);
 
   const ensureAudioPlaying = () => {
     if (audioRef.current && audioRef.current.paused && !isVideoEnded && playAttemptRef.current) {
       console.log('Attempting to resume paused audio...');
       audioRef.current.play().catch(error => {
         console.error('Error resuming audio:', error);
-        setAssetLoadError('Audio playback error: ' + error.message);
       });
     }
   };
@@ -45,12 +20,6 @@ function SplashScreen({ onComplete }) {
   const handleUserInteraction = () => {
     setHasInteracted(true);
     console.log('User interaction detected');
-
-    if (assetLoadError) {
-      console.log('Skipping media playback due to asset load error');
-      onComplete();
-      return;
-    }
 
     // Start video and audio playback explicitly on user gesture
     if (audioRef.current) {
@@ -71,17 +40,29 @@ function SplashScreen({ onComplete }) {
         .play()
         .then(() => {
           console.log('Audio playback started successfully');
+          console.log('Audio state after play:', {
+            muted: audioRef.current.muted,
+            volume: audioRef.current.volume,
+            paused: audioRef.current.paused,
+            currentTime: audioRef.current.currentTime
+          });
         })
         .catch((error) => {
           console.error('Audio playback error:', error);
-          setAssetLoadError('Audio playback error: ' + error.message);
+          console.log('Audio state when error occurred:', {
+            muted: audioRef.current.muted,
+            volume: audioRef.current.volume,
+            paused: audioRef.current.paused,
+            currentTime: audioRef.current.currentTime
+          });
         });
+    } else {
+      console.error('Audio element not found');
     }
 
     if (videoRef.current) {
       videoRef.current.play().catch((error) => {
         console.error('Video playback error:', error);
-        setAssetLoadError('Video playback error: ' + error.message);
       });
     }
 
@@ -94,6 +75,7 @@ function SplashScreen({ onComplete }) {
       setIsVideoEnded(true);
       playAttemptRef.current = false;
       if (audioRef.current) {
+        console.log('Timer ended, stopping audio');
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
       }
@@ -104,14 +86,14 @@ function SplashScreen({ onComplete }) {
   };
 
   useEffect(() => {
-    if (isVideoEnded || assetLoadError) {
+    if (isVideoEnded) {
       const timer = setTimeout(() => {
         onComplete();
       }, 500);
 
       return () => clearTimeout(timer);
     }
-  }, [isVideoEnded, assetLoadError, onComplete]);
+  }, [isVideoEnded, onComplete]);
 
   const handleVideoEnd = () => {
     setIsVideoEnded(true);
@@ -132,10 +114,7 @@ function SplashScreen({ onComplete }) {
         console.log('Audio paused');
         ensureAudioPlaying();
       };
-      const handleError = (e) => {
-        console.error('Audio error:', e);
-        setAssetLoadError('Audio error: ' + (e.message || 'Unknown error'));
-      };
+      const handleError = (e) => console.error('Audio error:', e);
 
       audio.addEventListener('canplay', handleCanPlay);
       audio.addEventListener('playing', handlePlaying);
@@ -160,7 +139,6 @@ function SplashScreen({ onComplete }) {
       >
         <div className="start-prompt">
           <h2>Tap or click anywhere to start</h2>
-          {assetLoadError && <p className="error-message">Error: {assetLoadError}</p>}
         </div>
         {/* preload audio early in DOM */}
         <audio
@@ -188,19 +166,10 @@ function SplashScreen({ onComplete }) {
         muted
         onEnded={handleVideoEnd}
         className="splash-video"
-        onError={(e) => {
-          console.error('Video error:', e);
-          setAssetLoadError('Video error: ' + (e.target.error?.message || 'Unknown error'));
-        }}
       >
         <source src="/NewsSplashScreenAsset/BreakingNews.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      {assetLoadError && (
-        <div className="error-overlay">
-          <p className="error-message">{assetLoadError}</p>
-        </div>
-      )}
     </div>
   );
 }
