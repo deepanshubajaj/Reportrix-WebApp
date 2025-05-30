@@ -13,7 +13,6 @@ const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const fetchCateredNews = createAsyncThunk('news/fetchCateredNews', async (searchString, { getState, rejectWithValue }) => {
     try {
-        const apiKey = process.env.REACT_APP_NEWS_API_KEY;
         // Map our category names to NewsAPI's expected format
         const categoryMap = {
             'general': 'general',
@@ -59,7 +58,7 @@ const fetchCateredNews = createAsyncThunk('news/fetchCateredNews', async (search
                 const delayTime = Math.min(1000 * Math.pow(2, retries), 8000); // Max 8 second delay
                 await wait(delayTime);
 
-                const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=${apiCategory}&apiKey=${apiKey}`);
+                const response = await axios.get(`/api/news?category=${apiCategory}`);
 
                 if (!response.data) {
                     throw new Error('No data in response');

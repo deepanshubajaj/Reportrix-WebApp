@@ -9,8 +9,7 @@ const initialStateValue = {
 
 const fetchNews = createAsyncThunk('news/fetchNews', async () => {
     try {
-        const apiKey = process.env.REACT_APP_NEWS_API_KEY;
-        const response = await axios.get(`https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=${apiKey}`);
+        const response = await axios.get('/api/news');
         return response.data.articles;
     } catch (error) {
         console.error('Error fetching news:', error);
