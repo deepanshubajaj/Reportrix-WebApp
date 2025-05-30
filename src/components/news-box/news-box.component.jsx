@@ -6,12 +6,12 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { UserContext } from '../../context/user-context';
 import { addArticleToBookmarks, removeArticleFromBookmarks } from '../../lib/utils/firebase.utils';
 import { useNavigate } from 'react-router-dom';
+import ImageModal from '../image-modal/image-modal.component';
 
 function NewsBox({ item }) {
     const { currentUser, userBookmarks } = useContext(UserContext);
-
     const [imageError, setImageError] = useState(false);
-
+    const [showImageModal, setShowImageModal] = useState(false);
     const navigate = useNavigate();
 
     const handleAddArticleToBookmarks = async () => {
@@ -51,7 +51,7 @@ function NewsBox({ item }) {
 
     return (
         <div className='news-box'>
-            <div className='image-container'>
+            <div className='image-container' onClick={() => setShowImageModal(true)}>
                 {
                     !imageError ?
                         <img
@@ -109,6 +109,13 @@ function NewsBox({ item }) {
                     />
                 }
             </div>
+
+            {showImageModal && (
+                <ImageModal
+                    imageUrl={!imageError ? item?.urlToImage : "https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg"}
+                    onClose={() => setShowImageModal(false)}
+                />
+            )}
         </div>
     )
 }

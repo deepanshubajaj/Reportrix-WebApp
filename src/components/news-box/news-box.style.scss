@@ -6,6 +6,12 @@
         width: 30%;
         margin: auto 0;
         line-height: 0;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.02);
+        }
 
         img {
             width: 100%;

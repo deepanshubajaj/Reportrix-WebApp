@@ -6,11 +6,13 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { UserContext } from '../../context/user-context';
 import { addArticleToBookmarks, removeArticleFromBookmarks } from '../../lib/utils/firebase.utils';
 import { useNavigate } from 'react-router-dom';
+import ImageModal from '../image-modal/image-modal.component';
 
 function NewsBoxAccountPage({ item }) {
     const { currentUser, userBookmarks } = useContext(UserContext);
 
     const [imageError, setImageError] = useState(false);
+    const [showImageModal, setShowImageModal] = useState(false);
 
     const navigate = useNavigate();
 
@@ -35,13 +37,13 @@ function NewsBoxAccountPage({ item }) {
     }
 
     const goToArticlePage = () => {
-        const title = item.title.split('?').join('').split('%').join('');
-        navigate(`/article/${title}`);
+        // Open the article URL in a new tab
+        window.open(item.url, '_blank');
     }
 
     return (
         <div className='news-box-account-page'>
-            <div className='image-container'>
+            <div className='image-container' onClick={() => setShowImageModal(true)} style={{ cursor: 'pointer' }}>
                 {
                     !imageError ?
                         <img
@@ -91,6 +93,13 @@ function NewsBoxAccountPage({ item }) {
                     />
                 }
             </div>
+
+            {showImageModal && (
+                <ImageModal
+                    imageUrl={!imageError ? item?.urlToImage : "https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg"}
+                    onClose={() => setShowImageModal(false)}
+                />
+            )}
         </div>
     )
 }

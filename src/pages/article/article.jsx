@@ -23,6 +23,18 @@ function Article() {
         return urlId === articleId || item.url === articleId;
     });
 
+    // If article is not found, display error message
+    if (!thisNews) {
+        return (
+            <div className='article-page-container'>
+                <div className="article-header">
+                    <h1 className='article-title'>Article not found</h1>
+                    <p>The article you're looking for could not be found.</p>
+                </div>
+            </div>
+        );
+    }
+
     const handleAddArticleToBookmarks = async () => {
         await addArticleToBookmarks(
             {
@@ -57,7 +69,7 @@ function Article() {
                         </ul>
 
                         <div className="bookmark-container">
-                            {userBookmarks.some(obj => obj.title === thisNews.title) ?
+                            {thisNews && userBookmarks?.some(obj => obj.title === thisNews.title) ?
                                 <BookmarkIcon
                                     className='marked'
                                     onClick={handleRemoveArticleFromBookmarks}
@@ -71,7 +83,7 @@ function Article() {
                 </div>
 
                 <div className="bookmark-container">
-                    {userBookmarks.some(obj => obj.title === thisNews.title) ?
+                    {thisNews && userBookmarks?.some(obj => obj.title === thisNews.title) ?
                         <BookmarkIcon
                             className='marked'
                             onClick={handleRemoveArticleFromBookmarks}

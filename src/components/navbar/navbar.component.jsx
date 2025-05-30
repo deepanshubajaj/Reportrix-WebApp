@@ -26,7 +26,7 @@ function Navbar() {
   // Only fetch the current category if not already in cache
   useEffect(() => {
     const currentCategory = currentPathCategory;
-    if (currentCategory && !cateredNews[currentCategory]) {
+    if (currentCategory && categories.includes(currentCategory) && !cateredNews[currentCategory]) {
       dispatch(fetchCateredNews(currentCategory));
     }
   }, [dispatch, location.pathname, cateredNews]);

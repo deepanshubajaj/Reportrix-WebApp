@@ -1,0 +1,75 @@
+.profile-image-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+
+    .profile-image-modal-content {
+        position: relative;
+        background-color: white;
+        padding: 1rem;
+        border-radius: 8px;
+        max-width: 90vw;
+        max-height: 90vh;
+        animation: scaleIn 0.3s ease-in-out;
+
+        img {
+            max-width: 100%;
+            max-height: calc(90vh - 2rem);
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: -1.5rem;
+            right: -1.5rem;
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+                background-color: #f0f0f0;
+            }
+
+            .MuiSvgIcon-root {
+                font-size: 1.5rem;
+                color: #333;
+            }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+} 

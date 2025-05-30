@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './account.style.scss';
 import { useNavigate } from 'react-router-dom';
 import { signOutUser } from '../../lib/utils/firebase.utils';
@@ -6,10 +6,12 @@ import { UserContext } from '../../context/user-context';
 import Button from '../../components/button/button.component';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import NewsBoxAccountPage from '../../components/news-box-account-page/news-box-account-page.component';
+import ProfileImageModal from '../../components/profile-image-modal/profile-image-modal.component';
 
 function AccountPage() {
     const navigate = useNavigate();
     const { userDoc, setUserDoc, userBookmarks, loading } = useContext(UserContext);
+    const [showImageModal, setShowImageModal] = useState(false);
 
     if (loading) {
         return (
@@ -59,12 +61,23 @@ function AccountPage() {
         <div className='account-page-container'>
             <div className="account-container">
                 <div className="account">
-                    <div className="profile-image-container">
+                    <div 
+                        className="profile-image-container"
+                        onClick={() => setShowImageModal(true)}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <img
                             src={userDoc?.photoURL || '/default-profile.png'}
                             alt={userDoc?.displayName || 'User'}
                         />
                     </div>
+
+                    {showImageModal && (
+                        <ProfileImageModal
+                            imageUrl={userDoc?.photoURL || '/default-profile.png'}
+                            onClose={() => setShowImageModal(false)}
+                        />
+                    )}
 
                     <div className="user-info">
                         <h1 className='user-name'>
