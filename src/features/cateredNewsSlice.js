@@ -58,21 +58,24 @@ const fetchCateredNews = createAsyncThunk('news/fetchCateredNews', async (search
                 const delayTime = Math.min(1000 * Math.pow(2, retries), 8000); // Max 8 second delay
                 await wait(delayTime);
 
-                const response = await axios.get(`/api/news?category=${apiCategory}`);
+                const apiKey = process.env.REACT_APP_NEWS_API_KEY;
+                const newsApiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=${apiCategory}&apiKey=${apiKey}`;
+                const response = await axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(newsApiUrl)}`);
+                const data = JSON.parse(response.data.contents);
 
-                if (!response.data) {
+                if (!data) {
                     throw new Error('No data in response');
                 }
 
-                if (!response.data.articles) {
+                if (!data.articles) {
                     throw new Error(`No articles found for category: ${searchString}`);
                 }
 
-                console.log(`Successfully fetched ${response.data.articles.length} articles for ${searchString}`);
+                console.log(`Successfully fetched ${data.articles.length} articles for ${searchString}`);
 
                 // Return the news with the original category name and fetch time
                 return {
-                    [searchString]: response.data.articles.slice(0, 60),
+                    [searchString]: data.articles.slice(0, 60),
                     lastFetchTime: { [searchString]: now }
                 };
             } catch (error) {
