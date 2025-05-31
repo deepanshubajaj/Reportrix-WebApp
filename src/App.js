@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from './routes/shared-layout/shared-layout';
 import Root from './routes/root/root.route';
@@ -12,18 +12,35 @@ import Account from './routes/account/account.route';
 import Footer from './components/footer/footer.component';
 import ArticleRoute from './routes/article/article.route';
 import SplashScreen from './components/splash-screen/splash-screen.component';
+import SplashScreenMobile from './components/splash-screen/splash-screen-mobile.component';
 
 function App() {
     const { currentUser } = useContext(UserContext);
     const [showSplash, setShowSplash] = useState(true);
+      const [isMobile, setIsMobile] = useState(false);
 
     const handleSplashComplete = () => {
         setShowSplash(false);
     };
 
-    if (showSplash) {
-        return <SplashScreen onComplete={handleSplashComplete} />;
-    }
+    useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  if (showSplash) {
+    return isMobile
+      ? <SplashScreenMobile onComplete={handleSplashComplete} />
+      : <SplashScreen onComplete={handleSplashComplete} />;
+  }
 
     const ProtectedRouteNoLogin = ({ children }) => {
         if (!currentUser) {
