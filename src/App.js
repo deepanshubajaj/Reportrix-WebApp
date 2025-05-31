@@ -17,30 +17,30 @@ import SplashScreenMobile from './components/splash-screen/splash-screen-mobile.
 function App() {
     const { currentUser } = useContext(UserContext);
     const [showSplash, setShowSplash] = useState(true);
-      const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const handleSplashComplete = () => {
         setShowSplash(false);
     };
 
     useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
 
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, []);
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+        };
+    }, []);
 
-  if (showSplash) {
-    return isMobile
-      ? <SplashScreenMobile onComplete={handleSplashComplete} />
-      : <SplashScreen onComplete={handleSplashComplete} />;
-  }
+    if (showSplash) {
+        return isMobile
+            ? <SplashScreenMobile onComplete={handleSplashComplete} />
+            : <SplashScreen onComplete={handleSplashComplete} />;
+    }
 
     const ProtectedRouteNoLogin = ({ children }) => {
         if (!currentUser) {
