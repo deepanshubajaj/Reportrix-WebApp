@@ -66,7 +66,7 @@
 
 ---
 
-## 🛠️ Installation:
+## 🛠️ Installation
 
 To run this project locally:
 
@@ -84,7 +84,7 @@ Once the development server is up and running, open your web browser and go to `
 
 ---
 
-## Set up environment variables:
+## Set up environment variables
 
 Create .env file
 
@@ -161,7 +161,7 @@ axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${API
 
 ---
 
-### 🖼️ Icon:
+## 🖼️ App Icon
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/ReportrixLogo.png" alt="Icon1" width="40%"  />
@@ -173,7 +173,7 @@ axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${API
 
 ---
 
-## 🖼️ Screenshots:
+## 🖼️ Screenshots
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im1.png" alt="Image1"  />
@@ -307,7 +307,7 @@ axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${API
 
 ---
 
-## 🚀 Video Demo:
+## 🚀 Video Demo
 
 Here’s a short video showcasing the app's functionality:
 
@@ -365,6 +365,6 @@ You are free to use this project for personal, educational, or commercial purpos
 
 ---
 
-## 📩 Contact:
+## 📩 Contact
 
 You can reach out to me [here](https://contact-form-react-sepia.vercel.app/).
