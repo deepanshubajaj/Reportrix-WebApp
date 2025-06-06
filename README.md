@@ -95,7 +95,7 @@ REACT_APP_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
 REACT_APP_FIREBASE_PROJECT_ID=your_firebase_project_id
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
 REACT_APP_FIREBASE_APP_ID=your_firebase_app_id
-REACT_APP_FIREBASE_MEASUREMENT_ID=G-your_firebase_measurement_id
+REACT_APP_FIREBASE_MEASUREMENT_ID=your_firebase_measurement_id
 
 # Cloudinary Configuration
 REACT_APP_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
@@ -179,85 +179,127 @@ axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${API
   <img src="ProjectOutputs/Snapshots/im1.png" alt="Image1"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im2.png" alt="Image2"  />
 </p>
+
+##
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im3.png" alt="Image3"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im4.png" alt="Image4"  />
 </p>
+
+##
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im5.png" alt="Image5"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im6.png" alt="Image6"  />
 </p>
+
+##
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im7.png" alt="Image7"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im8.png" alt="Image8"  />
 </p>
+
+##
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im9.png" alt="Image9"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im10.png" alt="Image10"  />
 </p>
+
+##
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im11.png" alt="Image11"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im12.png" alt="Image12"  />
 </p>
+
+##
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im13.png" alt="Image13"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im14.png" alt="Image14"  />
 </p>
+
+##
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im15.png" alt="Image15"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im16.png" alt="Image16"  />
 </p>
+
+##
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im17.png" alt="Image17"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im18.png" alt="Image18"  />
 </p>
+
+##
 
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im19.png" alt="Image19"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im20.png" alt="Image20"  />
 </p>
 
+##
+
 <p align="center">
   <img src="ProjectOutputs/Snapshots/im21.png" alt="Image21"  />
 </p>
+
+##
 
 <p align="center">
   *Snapshots of the running Application*
