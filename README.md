@@ -302,7 +302,7 @@ axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${API
 ##
 
 <p align="center">
-  *Snapshots of the running Application*
+  *Snapshots of the Running Application*
 </p>
 
 ---
@@ -311,7 +311,7 @@ axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${API
 
 Here’s a short video showcasing the app's functionality:
 
-[Watch the Working Demo](https://github.com/user-attachments/assets/ef4a97bf-8464-4c99-8461-f9c3a49e0277)
+[Watch the Working Demo](https://github.com/user-attachments/assets/928202a6-33a9-4238-b5bc-0296ab213eb9)
 
 ##
 
